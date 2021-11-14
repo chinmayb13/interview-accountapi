@@ -1,6 +1,6 @@
 package models
 
-
+//this file contains the req response structure of the apis we have exposed
 type PostReq struct {
 	Data *AccountData`json:"data"`
 }

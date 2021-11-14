@@ -9,13 +9,15 @@ import (
 )
 
 func main() {
-	r := mux.NewRouter()
-	client := &http.Client{}
-	//sr := r.PathPrefix("https://api.staging-form3.tech/v1").Subrouter()
+	r := mux.NewRouter()     //create a new router instance
+	client := &http.Client{} //create a new http client
+
+	//register endpoints with their corresponding handlers
 	r.HandleFunc("/organisation/accounts", handlers.CreateHandler(client)).Methods(http.MethodPost)
 	r.HandleFunc("/organisation/accounts", handlers.GetHandler(client)).Methods(http.MethodGet)
 	r.HandleFunc("/organisation/accounts", handlers.DeleteHandler(client)).Methods(http.MethodDelete)
+
 	fmt.Println("Starting server at port 8000...")
-	http.ListenAndServe(":8000", r)
+	http.ListenAndServe(":8000", r) //start listening on the port
 
 }
